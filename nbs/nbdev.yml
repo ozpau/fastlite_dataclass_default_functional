@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "fastlite_dataclass_default_functional"
+  site-url: "https://ozpau.github.io/fastlite_dataclass_default_functional"
+  description: "A bug in fastlite where defaults that use SQL functions don't work"
+  repo-branch: main
+  repo-url: "https://github.com/ozpau/fastlite_dataclass_default_functional"
