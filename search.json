@@ -1,0 +1,52 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "fastlite_dataclass_default_functional",
+    "section": "",
+    "text": "This file will become your README and also the index of your documentation.",
+    "crumbs": [
+      "fastlite_dataclass_default_functional"
+    ]
+  },
+  {
+    "objectID": "index.html#developer-guide",
+    "href": "index.html#developer-guide",
+    "title": "fastlite_dataclass_default_functional",
+    "section": "Developer Guide",
+    "text": "Developer Guide\nIf you are new to using nbdev here are some useful pointers to get you started.\n\nInstall fastlite_dataclass_default_functional in Development mode\n# make sure fastlite_dataclass_default_functional package is installed in development mode\n$ pip install -e .\n\n# make changes under nbs/ directory\n# ...\n\n# compile to have changes apply to fastlite_dataclass_default_functional\n$ nbdev_prepare",
+    "crumbs": [
+      "fastlite_dataclass_default_functional"
+    ]
+  },
+  {
+    "objectID": "index.html#usage",
+    "href": "index.html#usage",
+    "title": "fastlite_dataclass_default_functional",
+    "section": "Usage",
+    "text": "Usage\n\nInstallation\nInstall latest from the GitHub repository:\n$ pip install git+https://github.com/ozpau/fastlite_dataclass_default_functional.git\nor from conda\n$ conda install -c ozpau fastlite_dataclass_default_functional\nor from pypi\n$ pip install fastlite_dataclass_default_functional\n\n\nDocumentation\nDocumentation can be found hosted on this GitHub repository’s pages. Additionally you can find package manager specific guidelines on conda and pypi respectively.",
+    "crumbs": [
+      "fastlite_dataclass_default_functional"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "fastlite_dataclass_default_functional",
+    "section": "How to use",
+    "text": "How to use\nFill me in please! Don’t forget code examples:\n\n1+1\n\n2",
+    "crumbs": [
+      "fastlite_dataclass_default_functional"
+    ]
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "core",
+    "section": "",
+    "text": "from fastlite import *\n\n\ndb = database(':memory:')\n\n\ndb.q(\"\"\"\nCREATE TABLE IF NOT EXISTS migrations (\n    id INTEGER PRIMARY KEY, name TEXT, inserted_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL\n);\n\"\"\")\n\n[]\n\n\n\ndef list_records(): return db.q(\"SELECT * FROM migrations\")\nlist_records()\n\n[]\n\n\n\nmigrations = db.t.migrations\nMigration = migrations.dataclass()\n\nCreating Migration with dataclass copies default value that is an SQL function:\n\nm = Migration(name='setup_db')\nm\n\nMigrations(id=UNSET, name='setup_db', inserted_at='CURRENT_TIMESTAMP')\n\n\n\nmigrations.insert(m)\n\nMigrations(id=1, name='setup_db', inserted_at='CURRENT_TIMESTAMP')\n\n\nInserting this record doesn’t execure the SQL function as expected:\n\nlist_records()\n\n[{'id': 1, 'name': 'setup_db', 'inserted_at': 'CURRENT_TIMESTAMP'}]\n\n\nNow let’s do a similar insert using raw SQL:db.q(“SELECT * FROM migrations”)\n\ndb.q(\"INSERT INTO migrations (name) VALUES('create_users')\")\n\n[]\n\n\n\nlist_records()\n\n[{'id': 1, 'name': 'setup_db', 'inserted_at': 'CURRENT_TIMESTAMP'},\n {'id': 2, 'name': 'create_users', 'inserted_at': '2025-03-08 15:23:30'}]\n\n\nAs you can see, the SQL function got called as it should.",
+    "crumbs": [
+      "core"
+    ]
+  }
+]
